@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息卡片 · 稳定入口说明 | 大小球</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #f9ece3 0%, #f1d9ca 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.6;
+            color: #3f2e27;
+        }
+
+        .page-wrap {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* 主视觉卡片 — 暖色渐变，白色内容卡片 */
+        .hero-card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 48px 16px 48px 16px;
+            box-shadow: 0 20px 40px -12px rgba(160, 100, 70, 0.25), 0 8px 24px -6px rgba(0,0,0,0.05);
+            padding: 3rem 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .hero-card h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #a4684b, #c48662);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: #6b4b3e;
+            font-weight: 350;
+            border-left: 4px solid #d9ad92;
+            padding-left: 1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            max-width: 680px;
+            color: #4b382f;
+        }
+
+        .hero-description a {
+            color: #b46844;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid #edd5c4;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        .hero-description a:hover {
+            color: #8f4d2c;
+            border-bottom-color: #b46844;
+        }
+
+        /* 三列信息卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card-item {
+            background: #fffffffa;
+            border-radius: 28px 10px 28px 10px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 10px 18px -8px rgba(130, 70, 40, 0.12);
+            transition: transform 0.2s, box-shadow 0.25s;
+        }
+
+        .card-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 28px -12px rgba(130, 70, 40, 0.18);
+        }
+
+        .card-item h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #8b5d46;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.01em;
+        }
+
+        .card-subhead {
+            font-size: 0.9rem;
+            color: #a8836e;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #efddd4;
+            padding-bottom: 0.6rem;
+        }
+
+        .card-item p {
+            font-size: 0.98rem;
+            color: #4f3b32;
+        }
+
+        .card-item .picto {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: #f5e8e0;
+            width: 44px;
+            height: 44px;
+            line-height: 48px;
+            text-align: center;
+            border-radius: 30% 10% 30% 10%;
+        }
+
+        /* 自然链接段落 + 提示卡片 */
+        .link-block {
+            background: #fffffffa;
+            border-radius: 24px 12px 24px 12px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 18px -8px rgba(100, 60, 30, 0.08);
+        }
+
+        .link-block p {
+            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .link-block a {
+            color: #b15935;
+            text-decoration: none;
+            font-weight: 500;
+            background: #fdf3ed;
+            padding: 0.2rem 0.5rem 0.15rem 0.5rem;
+            border-radius: 30px;
+            border: 1px solid #ead5c8;
+            transition: background 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .link-block a:hover {
+            background: #ecd9cc;
+            border-color: #c3957a;
+        }
+
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.8rem;
+            background: #faf2ec;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin-top: 1rem;
+        }
+
+        .faq-mini span {
+            font-weight: 350;
+            color: #5f4337;
+        }
+
+        .faq-mini strong {
+            font-weight: 500;
+            color: #7a5340;
+            margin-right: 0.3rem;
+        }
+
+        .faq-mini a {
+            color: #a15b3b;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbaa94;
+        }
+
+        .faq-mini a:hover {
+            border-bottom-style: solid;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem 1rem;
+            }
+            .hero-card {
+                padding: 2rem 1.5rem;
+                border-radius: 32px 12px 32px 12px;
+            }
+            .hero-card h1 {
+                font-size: 2.2rem;
+            }
+            .card-item {
+                padding: 1.6rem 1.4rem;
+            }
+            .link-block {
+                padding: 1.6rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-card h1 {
+                font-size: 1.9rem;
+            }
+            .hero-tagline {
+                font-size: 1rem;
+            }
+            .faq-mini {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #7d6254;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+        <h1>大小球 · 稳定入口</h1>
+        <div class="hero-tagline">信息卡片式引导 · 从日常到清晰</div>
+        <div class="hero-description">
+            <p>很多朋友第一次接触 <a href="https://portal-ou.com">大小球</a> 这个说法，会以为只是简单的对比。其实它是理解资源状态、内容节奏的一种观察方式。我们把这个入口做成了卡片页，不求复杂，但求每次打开都能找到自己需要的那个锚点。</p>
+        </div>
+    </div>
+
+    <!-- 用途卡片 + 适合人群（三列） -->
+    <div class="card-grid">
+        <div class="card-item">
+            <div class="picto">📊</div>
+            <h3>信息分流</h3>
+            <div class="card-subhead">让频道更清晰</div>
+            <p>将更新频率、内容密度主动区分为“大节奏”与“小细节”。不必每次都从头翻找，直接定位自己关心的模块。</p>
+        </div>
+
+        <div class="card-item">
+            <div class="picto">👤</div>
+            <h3>日常浏览者</h3>
+            <div class="card-subhead">适合人群 · 轻度到中度</div>
+            <p>如果你每天只有碎片时间，又希望不错过关键更新，<a href="https://portal-ou.com" style="color:#b15935; text-decoration:underline; text-underline-offset:4px;">大小球</a> 的归纳方式会让你少滑几次屏幕。</p>
+        </div>
+
+        <div class="card-item">
+            <div class="picto">🔄</div>
+            <h3>回顾与对比</h3>
+            <div class="card-subhead">适合人群 · 内容整理者</div>
+            <p>整理信息流时，将类似条目按“主次”分组。同一话题下，大版本与小调整各自归位，日后回溯也更省力。</p>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 + 提示样式的FAQ摘要 -->
+    <div class="link-block">
+        <p>在 portal-ou.com 中，<a href="https://portal-ou.com">大小球</a> 更像一个理解内容的坐标：主视觉承载核心动态，辅助卡片存放细节延伸。建议首次花三分钟浏览全貌，后续再根据兴趣深入。</p>
+        <p>页面设计上使用了暖色渐变与圆角按钮感链接，希望给人踏实、可停留的感受，而不是花哨的跳转。</p>
+
+        <div class="faq-mini">
+            <span><strong>🟤 常见想法</strong> “大小球是否每天更新？” 内容节奏依实际更新频率而定，不会刻意凑数。</span>
+            <span><strong>🟤 场景</strong> 适合日常翻阅、资料整理、轻量研究。</span>
+            <span><strong>🟤 更多</strong> 如果想了解具体分类逻辑，可以留意首页各模块的 <a href="https://portal-ou.com">大小球</a> 标签提示。</span>
+        </div>
+    </div>
+
+    <!-- 一个轻微提示，但不用作入口 -->
+    <div class="footer-note">
+        卡片式入口 · 保持稳定质感
+    </div>
+</div>
+</body>
+</html>
